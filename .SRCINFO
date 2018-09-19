@@ -18,19 +18,14 @@ pkgname = zfs-linux-lts
 	install = zfs.install
 	groups = archzfs-linux-lts
 	provides = zfs
+	conflicts = zfs-dkms
+	conflicts = zfs-dkms-git
 	conflicts = zfs-linux-lts-git
 
 pkgname = zfs-linux-lts-headers
 	pkgdesc = Kernel headers for the Zettabyte File System.
-	conflicts = zfs-archiso-linux-headers
-	conflicts = zfs-archiso-linux-git-headers
-	conflicts = zfs-linux-hardened-headers
-	conflicts = zfs-linux-hardened-git-headers
-	conflicts = zfs-linux-lts-git-headers
-	conflicts = zfs-linux-headers
-	conflicts = zfs-linux-git-headers
-	conflicts = zfs-linux-vfio-headers
-	conflicts = zfs-linux-vfio-git-headers
-	conflicts = zfs-linux-zen-headers
-	conflicts = zfs-linux-zen-git-headers
+	provides = zfs-headers
+	conflicts = zfs-headers
+	conflicts = zfs-dkms
+	conflicts = zfs-dkms-git
 
