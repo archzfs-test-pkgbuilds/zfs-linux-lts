@@ -20,7 +20,9 @@ pkgname = zfs-linux-lts
 	provides = zfs
 	conflicts = zfs-dkms
 	conflicts = zfs-dkms-git
+	conflicts = zfs-dkms-rc
 	conflicts = zfs-linux-lts-git
+	conflicts = zfs-linux-lts-rc
 
 pkgname = zfs-linux-lts-headers
 	pkgdesc = Kernel headers for the Zettabyte File System.
@@ -28,4 +30,5 @@ pkgname = zfs-linux-lts-headers
 	conflicts = zfs-headers
 	conflicts = zfs-dkms
 	conflicts = zfs-dkms-git
+	conflicts = zfs-dkms-rc
 
