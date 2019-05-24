@@ -48,6 +48,7 @@ package_zfs-linux-lts() {
     provides=("zfs" "spl")
     groups=("archzfs-linux-lts")
     conflicts=("zfs-dkms" "zfs-dkms-git" "zfs-dkms-rc" "spl-dkms" "spl-dkms-git")
+    replaces=("spl-linux-lts")
     cd "${srcdir}/zfs-${_zfsver}"
     make DESTDIR="${pkgdir}" install
     cp -r "${pkgdir}"/{lib,usr}
