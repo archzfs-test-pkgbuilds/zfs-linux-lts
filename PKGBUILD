@@ -17,25 +17,20 @@
 #
 pkgbase="zfs-linux-lts"
 pkgname=("zfs-linux-lts" "zfs-linux-lts-headers")
-_zfsver="2.0.4"
-_kernelver="5.10.46-1"
-_extramodules="5.10.46-1-lts"
+_zfsver="2.2.2"
+_kernelver="6.1.70-1"
+_kernelver_full="6.1.70-1"
+_extramodules="6.1.70-1-lts"
 
 pkgver="${_zfsver}_$(echo ${_kernelver} | sed s/-/./g)"
 pkgrel=1
 makedepends=("linux-lts-headers=${_kernelver}")
 arch=("x86_64")
-url="https://zfsonlinux.org/"
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${_zfsver}/zfs-${_zfsver}.tar.gz"
-              "linux-5.12-compat.patch")
-sha256sums=("7d1344c5433b91823f02c2e40b33d181fa6faf286bea5591f4b1965f23d45f6c"
-                        "9c601804dc473766d85da2198aa3769707e051d3659dc82dd1302edd5e91a8cf")
+url="https://openzfs.org/"
+source=("https://github.com/openzfs/zfs/releases/download/zfs-${_zfsver}/zfs-${_zfsver}.tar.gz")
+sha256sums=("76bc0547d9ba31d4b0142e417aaaf9f969072c3cb3c1a5b10c8738f39ed12fc9")
 license=("CDDL")
 depends=("kmod" "zfs-utils=${_zfsver}" "linux-lts=${_kernelver}")
-prepare() {
-    cd "${srcdir}/zfs-${_zfsver}"
-    patch -Np1 -i ${srcdir}/linux-5.12-compat.patch
-}
 
 build() {
     cd "${srcdir}/zfs-${_zfsver}"
@@ -56,7 +51,7 @@ package_zfs-linux-lts() {
     conflicts=("zfs-dkms" "zfs-dkms-git" "zfs-dkms-rc" "spl-dkms" "spl-dkms-git" 'zfs-linux-lts-git' 'zfs-linux-lts-rc' 'spl-linux-lts')
     replaces=("spl-linux-lts")
     cd "${srcdir}/zfs-${_zfsver}"
-    make DESTDIR="${pkgdir}" INSTALL_MOD_PATH=/usr install
+    make DESTDIR="${pkgdir}" INSTALL_MOD_PATH=${pkgdir}/usr INSTALL_MOD_STRIP=1 install
     # Remove src dir
     rm -r "${pkgdir}"/usr/src
 }
